@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.mymultifragapplication.databinding.ActivityMainBinding
 
+//test
+
 val String.numOfkoreanCharacters: Int
     get() {
         var count = 0
