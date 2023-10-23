@@ -7,14 +7,14 @@ import com.example.mymultifragapplication.databinding.ActivityMainBinding
 
 val String.numOfkoreanCharacters: Int
     get() {
-        var count1 = 0
+        var count = 0
         for (i in 0 until length) {
             if (this[i] >= 0xAC00.toChar() && this[i] <= 0xD7A3.toChar()) {
-                count1 += 1
+                count += 1
             }
         }
 
-        return count1
+        return count
     }
 
 class MainActivity : AppCompatActivity() {
