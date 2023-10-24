@@ -7,6 +7,8 @@ import com.example.mymultifragapplication.databinding.ActivityMainBinding
 
 //test
 
+// test - minsu
+
 val String.numOfkoreanCharacters: Int
     get() {
         var count = 0
