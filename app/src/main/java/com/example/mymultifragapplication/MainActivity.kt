@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.mymultifragapplication.databinding.ActivityMainBinding
 
-// yujin commit test
+// yujin commit test 2
 //test
 
 val String.numOfkoreanCharacters: Int
