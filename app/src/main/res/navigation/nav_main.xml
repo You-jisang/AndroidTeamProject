@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.mymultifragapplication.MainFragment"
+        android:label="시간표"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_semesterFragment"
+            app:destination="@id/semesterFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.mymultifragapplication.MapFragment"
+        android:label="항공대 지도"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.mymultifragapplication.RegisterFragment"
+        android:label="시간표 등록"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/semesterFragment"
+        android:name="com.example.mymultifragapplication.SemesterFragment"
+        android:label="학기 선택 메뉴"
+        tools:layout="@layout/fragment_semester" />
+</navigation>
