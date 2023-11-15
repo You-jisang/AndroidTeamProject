@@ -1,18 +1,17 @@
 package com.example.mymultifragapplication
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymultifragapplication.databinding.FragmentTomorrowMapBinding
 import com.example.mymultifragapplication.viewmodel.DateViewModel
-import com.example.mymultifragapplication.viewmodel.TodayLectureViewModel
 import com.example.mymultifragapplication.viewmodel.TomorrowViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
@@ -25,7 +24,7 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
     private var binding: FragmentTomorrowMapBinding? = null
     private lateinit var mapView: MapView
     private lateinit var dateText: TextView
-    private lateinit var refreshButton: Button
+    private lateinit var TodayButton: Button
 
     private val viewModel: DateViewModel by activityViewModels()
     private val tomorrowViewModel: TomorrowViewModel by activityViewModels()
@@ -37,7 +36,7 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
         binding = FragmentTomorrowMapBinding.inflate(inflater, container, false)
         mapView = binding?.map2!!
         dateText = binding?.tomorrowText!!
-        refreshButton = binding?.buttonTomorrow!!
+        TodayButton = binding?.buttonTomorrow!!
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
@@ -67,10 +66,14 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
     }
 
 
-
     override fun onMapReady(googleMap: com.google.android.gms.maps.GoogleMap) {
         val seoul = LatLng(37.60108, 126.8652) // 항공대의 위도와 경도
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 17.3f)) // 카메라를 서울로 이동하고, 줌 레벨을 10으로 설정
+        googleMap.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                seoul,
+                17.3f
+            )
+        ) // 카메라를 서울로 이동하고, 줌 레벨을 10으로 설정
     }
 
     override fun onResume() {

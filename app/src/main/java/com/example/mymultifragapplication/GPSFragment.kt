@@ -8,10 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymultifragapplication.databinding.FragmentGPSBinding
-import com.example.mymultifragapplication.databinding.FragmentTomorrowMapBinding
 import com.example.mymultifragapplication.viewmodel.DateViewModel
 import com.example.mymultifragapplication.viewmodel.TomorrowViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -20,7 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 
 
-class GPSFragment: Fragment(), OnMapReadyCallback {
+class GPSFragment : Fragment(), OnMapReadyCallback {
 
     private var binding: FragmentGPSBinding? = null
     private lateinit var mapView: MapView
@@ -47,9 +44,15 @@ class GPSFragment: Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
     }
+
     override fun onMapReady(googleMap: com.google.android.gms.maps.GoogleMap) {
         val seoul = LatLng(37.60108, 126.8652) // 항공대의 위도와 경도
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 17.3f)) // 카메라를 서울로 이동하고, 줌 레벨을 10으로 설정
+        googleMap.moveCamera(
+            CameraUpdateFactory.newLatLngZoom(
+                seoul,
+                17.3f
+            )
+        ) // 카메라를 서울로 이동하고, 줌 레벨을 10으로 설정
     }
 
     override fun onResume() {
