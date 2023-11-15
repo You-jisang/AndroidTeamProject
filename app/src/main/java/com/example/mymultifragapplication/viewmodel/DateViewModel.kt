@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import java.time.LocalDate
 
 
-
-class DateViewModel: ViewModel() {
+class DateViewModel : ViewModel() {
 
     private val _date = MutableLiveData<String>()
     val date: LiveData<String> = _date
@@ -26,7 +25,6 @@ class DateViewModel: ViewModel() {
         _date.value = todayDate
 
     }
-
 
 
     private fun updateTomorrowDate() {

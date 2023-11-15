@@ -6,16 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mymultifragapplication.databinding.ListLecturesBinding
 import com.example.mymultifragapplication.viewmodel.Lecture
 
-class LectureAdapter(private var lectures: List<Lecture>) : RecyclerView.Adapter<LectureAdapter.LectureViewHolder>() {
+class LectureAdapter(private var lectures: List<Lecture>) :
+    RecyclerView.Adapter<LectureAdapter.LectureViewHolder>() {
 
-    inner class LectureViewHolder(private val binding: ListLecturesBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class LectureViewHolder(private val binding: ListLecturesBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(lecture: Lecture) {
             binding.textName.text = lecture.name
             binding.textLocation.text = lecture.location
             binding.textStart.text = "${lecture.startTime}"
             binding.textEnd.text = "${lecture.endTime}"
 
-            // 과목에 따라 마커 이미지를 변경합니다.
+            // 과목에 따라 마커 이미지를 변경
             val markerImageResId = when (lecture.name) {
                 "수학" -> R.drawable.location
                 "과학" -> R.drawable.location_blue
@@ -27,7 +29,8 @@ class LectureAdapter(private var lectures: List<Lecture>) : RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LectureViewHolder {
-        val binding = ListLecturesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ListLecturesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return LectureViewHolder(binding)
     }
 

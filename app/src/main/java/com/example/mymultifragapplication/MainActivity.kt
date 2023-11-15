@@ -1,7 +1,7 @@
 package com.example.mymultifragapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -28,7 +28,11 @@ class MainActivity : AppCompatActivity() {
 
         //top 레벨 Fragment id
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.mapFragment, R.id.mainFragment, R.id.tomorrowMapFragment) //이 Fragment 화면 상단에는 up버튼 안보임
+            setOf(
+                R.id.mapFragment,
+                R.id.mainFragment,
+                R.id.tomorrowMapFragment
+            ) //이 Fragment 화면 상단에는 up버튼 안보임
         )
         setupActionBarWithNavController(navController, appBarConfiguration) // 액션바
         binding.bottomNav.setupWithNavController(navController) //하단 버튼 설정
