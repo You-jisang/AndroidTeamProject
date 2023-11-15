@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.mymultifragapplication.MapFragment"
-        android:label="오늘의 항공대"
+        android:label="오늘 일정"
         tools:layout="@layout/fragment_map">
         <action
             android:id="@+id/action_mapFragment_to_tomorrowMapFragment"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/tomorrowMapFragment"
         android:name="com.example.mymultifragapplication.TomorrowMapFragment"
-        android:label="내일의 항공대"
+        android:label="내일 일정"
         tools:layout="@layout/fragment_tomorrow_map">
         <action
             android:id="@+id/action_tomorrowMapFragment_to_mapFragment"
@@ -53,6 +53,6 @@
     <fragment
         android:id="@+id/GPSFragment"
         android:name="com.example.mymultifragapplication.GPSFragment"
-        android:label="fragment_g_p_s"
+        android:label="네비게이션"
         tools:layout="@layout/fragment_g_p_s" />
 </navigation>

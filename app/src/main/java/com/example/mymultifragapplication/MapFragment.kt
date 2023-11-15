@@ -9,8 +9,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymultifragapplication.databinding.FragmentMapBinding
 import com.example.mymultifragapplication.viewmodel.DateViewModel
+import com.example.mymultifragapplication.viewmodel.TodayLectureViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -24,13 +26,16 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var dateText: TextView
     private lateinit var refreshButton: Button
 
-    val viewModel: DateViewModel by activityViewModels()
+    private val viewModel: DateViewModel by activityViewModels()
+    private val todayLectureViewModel: TodayLectureViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMapBinding.inflate(inflater, container, false)
+
         mapView = binding?.map1!!
         dateText = binding?.todayText!!
         refreshButton = binding?.buttonToday!!
@@ -48,6 +53,20 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
         binding?.buttonToday?.setOnClickListener {
             findNavController().navigate(R.id.action_mapFragment_to_tomorrowMapFragment)
+        }
+
+        binding?.naviBtn?.setOnClickListener {
+            findNavController().navigate(R.id.action_mapFragment_to_GPSFragment)
+        }
+
+        val lectureAdapter = LectureAdapter(emptyList())
+        binding?.todayList?.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = lectureAdapter
+        }
+
+        todayLectureViewModel.lectures.observe(viewLifecycleOwner) { lectures ->
+            binding?.todayList?.adapter = LectureAdapter(lectures)
         }
 
 
