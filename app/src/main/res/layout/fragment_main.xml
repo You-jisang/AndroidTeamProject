@@ -7,32 +7,955 @@
     android:layout_height="match_parent"
     tools:context=".MainFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
-        android:text="시간표 페이지 입니다."
-        android:textColor="@color/black"
-        android:textSize="24sp"
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp"
+        android:columnCount="6"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:rowCount="19"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <!-- 요일 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="월" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="화" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="수" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="목" />
+
+        <TextView
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="금" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="09:00" />
+
+        <TextView
+            android:id="@+id/monday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0900"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0900"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0900"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0900"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0900"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0900"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="09:30" />
+
+        <TextView
+            android:id="@+id/monday0930"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0930"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0930"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0930"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0930"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0930"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0930"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0930"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0930"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0930"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="10:00" />
+
+        <TextView
+            android:id="@+id/monday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1000"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1000"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1000"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1000"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1000"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1000"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="10:30" />
+
+        <TextView
+            android:id="@+id/monday1030"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1030"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1030"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1030"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1030"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1030"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1030"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1030"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1030"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1030"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="11:00" />
+
+        <TextView
+            android:id="@+id/monday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1100"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="11:30" />
+
+        <TextView
+            android:id="@+id/monday1130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1130"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1130"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1130"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1130"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1130"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="12:00" />
+
+        <TextView
+            android:id="@+id/monday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1200"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="12:30" />
+
+        <TextView
+            android:id="@+id/monday1230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday1230"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday1230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday1230"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday1230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday1230"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday1230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday1230"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday1230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday1230"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="01:00" />
+
+        <TextView
+            android:id="@+id/monday0100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0100"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0100"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0100"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="01:30" />
+
+        <TextView
+            android:id="@+id/monday0130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0130"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0130"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0130"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0130"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0130"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0130"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="02:00" />
+
+        <TextView
+            android:id="@+id/monday0200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0200"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0200"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0200"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="02:30" />
+
+        <TextView
+            android:id="@+id/monday0230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0230"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0230"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0230"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0230"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0230"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0230"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="03:00" />
+
+        <TextView
+            android:id="@+id/monday0300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0300"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0300"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0300"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0300"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0300"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0300"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="03:30" />
+
+        <TextView
+            android:id="@+id/monday0330"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0330"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0330"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0330"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0330"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0330"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0330"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0330"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0330"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0330"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="04:00" />
+
+        <TextView
+            android:id="@+id/monday0400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0400"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0400"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0400"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0400"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0400"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0400"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="04:30" />
+
+        <TextView
+            android:id="@+id/monday0430"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0430"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0430"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0430"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0430"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0430"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0430"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0430"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0430"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0430"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="05:00" />
+
+        <TextView
+            android:id="@+id/monday0500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0500"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0500"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0500"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0500"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0500"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0500"
+            android:text="" />
+
+
+        <!-- 시간 표시 -->
+        <TextView
+            android:layout_rowWeight="1"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:text="05:30" />
+
+        <TextView
+            android:id="@+id/monday0530"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="monday0530"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tuesday0530"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="tuesday0530"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/wednesday0530"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="wednesday0530"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/thursday0530"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="thursday0530"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/friday0530"
+            android:layout_gravity="fill"
+            android:background="@drawable/cell"
+            android:gravity="center"
+            android:tag="friday0530"
+            android:text="" />
+    </GridLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="25dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread">
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/btn_register"
@@ -44,7 +967,8 @@
             android:id="@+id/btn_semester"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="메뉴" />
+            android:text="목록" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
