@@ -12,6 +12,17 @@ class MainFragment : Fragment() {
 
     var binding: FragmentMainBinding? = null
 
+    private var className: String? = null
+    private var classProfessor: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            className = it.getString("CLASS_NAME")
+            classProfessor = it.getString("CLASS_PROFESSOR")
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
