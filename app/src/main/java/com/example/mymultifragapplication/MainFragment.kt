@@ -19,9 +19,10 @@ class MainFragment : Fragment() {
         binding = FragmentMainBinding.inflate(inflater)
 
         // Inflate the layout for this fragment
-        return binding?.root
+        return binding?.root // binding 최상위 view
     }
 
+    // 위 onCreateView가 끝나고 실행
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
