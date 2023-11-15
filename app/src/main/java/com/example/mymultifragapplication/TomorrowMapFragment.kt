@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.mymultifragapplication.databinding.FragmentMapBinding
+import com.example.mymultifragapplication.databinding.FragmentTomorrowMapBinding
 import com.example.mymultifragapplication.viewmodel.DateViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
@@ -17,9 +17,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 
 
-class MapFragment : Fragment(), OnMapReadyCallback {
+class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
 
-    private var binding: FragmentMapBinding? = null
+    private var binding: FragmentTomorrowMapBinding? = null
     private lateinit var mapView: MapView
     private lateinit var dateText: TextView
     private lateinit var refreshButton: Button
@@ -30,10 +30,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMapBinding.inflate(inflater, container, false)
-        mapView = binding?.map1!!
-        dateText = binding?.todayText!!
-        refreshButton = binding?.buttonToday!!
+        binding = FragmentTomorrowMapBinding.inflate(inflater, container, false)
+        mapView = binding?.map2!!
+        dateText = binding?.tomorrowText!!
+        refreshButton = binding?.buttonTomorrow!!
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
@@ -43,19 +43,20 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.date.observe(viewLifecycleOwner) {
-            binding?.todayText?.text = viewModel.date.value
-        }
-        binding?.buttonToday?.setOnClickListener {
-            findNavController().navigate(R.id.action_mapFragment_to_tomorrowMapFragment)
+        viewModel.tomorrowDate.observe(viewLifecycleOwner) {
+            binding?.tomorrowText?.text = viewModel.tomorrowDate.value
         }
 
-
+        binding?.buttonTomorrow?.setOnClickListener {
+            findNavController().navigate(R.id.action_tomorrowMapFragment_to_mapFragment)
+        }
     }
+
+
 
     override fun onMapReady(googleMap: com.google.android.gms.maps.GoogleMap) {
         val seoul = LatLng(37.60108, 126.8652) // 항공대의 위도와 경도
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 17.8f)) // 카메라를 서울로 이동하고, 줌 레벨을 10으로 설정
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 17.3f)) // 카메라를 서울로 이동하고, 줌 레벨을 10으로 설정
     }
 
     override fun onResume() {
