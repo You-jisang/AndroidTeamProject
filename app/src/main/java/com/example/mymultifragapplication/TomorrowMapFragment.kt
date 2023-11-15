@@ -9,8 +9,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymultifragapplication.databinding.FragmentTomorrowMapBinding
 import com.example.mymultifragapplication.viewmodel.DateViewModel
+import com.example.mymultifragapplication.viewmodel.TodayLectureViewModel
+import com.example.mymultifragapplication.viewmodel.TomorrowViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -24,7 +27,8 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var dateText: TextView
     private lateinit var refreshButton: Button
 
-    val viewModel: DateViewModel by activityViewModels()
+    private val viewModel: DateViewModel by activityViewModels()
+    private val tomorrowViewModel: TomorrowViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +53,16 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
 
         binding?.buttonTomorrow?.setOnClickListener {
             findNavController().navigate(R.id.action_tomorrowMapFragment_to_mapFragment)
+        }
+
+        val lectureAdapter = LectureAdapter(emptyList())
+        binding?.tomorrowList?.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = lectureAdapter
+        }
+
+        tomorrowViewModel.lectures.observe(viewLifecycleOwner) { lectures ->
+            binding?.tomorrowList?.adapter = LectureAdapter(lectures)
         }
     }
 
