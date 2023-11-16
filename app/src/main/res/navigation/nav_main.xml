@@ -35,7 +35,11 @@
         android:id="@+id/registerFragment"
         android:name="com.example.mymultifragapplication.RegisterFragment"
         android:label="시간표 등록"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/todolistFragment"
         android:name="com.example.mymultifragapplication.TodolistFragment"
