@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_semesterFragment"
-            app:destination="@id/semesterFragment" />
+            app:destination="@id/todolistFragment" />
         <action
             android:id="@+id/action_mainFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.mymultifragapplication.MapFragment"
-        android:label="오늘의 항공대"
+        android:label="오늘 일정"
         tools:layout="@layout/fragment_map">
         <action
             android:id="@+id/action_mapFragment_to_tomorrowMapFragment"
@@ -41,14 +41,18 @@
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/semesterFragment"
-        android:name="com.example.mymultifragapplication.SemesterFragment"
-        android:label="학기 선택 메뉴"
-        tools:layout="@layout/fragment_semester" />
+        android:id="@+id/todolistFragment"
+        android:name="com.example.mymultifragapplication.TodolistFragment"
+        android:label="To-Do-List"
+        tools:layout="@layout/fragment_todolist">
+        <action
+            android:id="@+id/action_todolistFragment_to_editlistFragment"
+            app:destination="@id/editlistFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tomorrowMapFragment"
         android:name="com.example.mymultifragapplication.TomorrowMapFragment"
-        android:label="내일의 항공대"
+        android:label="내일 일정"
         tools:layout="@layout/fragment_tomorrow_map">
         <action
             android:id="@+id/action_tomorrowMapFragment_to_mapFragment"
@@ -57,6 +61,17 @@
     <fragment
         android:id="@+id/GPSFragment"
         android:name="com.example.mymultifragapplication.GPSFragment"
-        android:label="fragment_g_p_s"
+        android:label="네비게이션"
         tools:layout="@layout/fragment_g_p_s" />
+    <fragment
+        android:id="@+id/editlistFragment"
+        android:name="com.example.mymultifragapplication.EditlistFragment"
+        android:label="새 메모"
+        tools:layout="@layout/fragment_editlist">
+        <action
+            android:id="@+id/action_editlistFragment_to_todolistFragment"
+            app:destination="@id/todolistFragment"
+            app:popUpTo="@id/todolistFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
