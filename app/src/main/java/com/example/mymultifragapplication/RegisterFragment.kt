@@ -1,33 +1,26 @@
 package com.example.mymultifragapplication
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.mymultifragapplication.databinding.FragmentScheduleAddBinding
-import android.widget.Button
-import android.widget.TextView
-import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
-import com.example.mymultifragapplication.databinding.FragmentMapBinding
-import com.example.mymultifragapplication.viewmodel.DateViewModel
+import com.example.mymultifragapplication.databinding.FragmentRegisterBinding
 
 
 // import com.example.mymultifragapplication.viewmodel.ScheduleAddViewModel
 
 class RegisterFragment : Fragment() {
 
-    var binding : FragmentScheduleAddBinding? = null
+    var binding: FragmentRegisterBinding? = null
     // private lateinit var scheduleAddViewModel: ScheduleAddViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentScheduleAddBinding.inflate(inflater)
+        binding = FragmentRegisterBinding.inflate(inflater)
         return binding?.root
     }
 
