@@ -16,13 +16,13 @@
         android:layout_marginBottom="8dp"
         android:hint="제목을 입력해주세요."
         app:counterEnabled="true"
-        app:layout_constraintBottom_toTopOf="@+id/etTodoContent"
+        app:layout_constraintBottom_toTopOf="@+id/etTodoTask"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etTodoContent"
+        android:id="@+id/etTodoTask"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -31,14 +31,14 @@
         android:hint="내용을 입력해주세요."
         android:inputType="textMultiLine"
         android:singleLine="false"
-        app:layout_constraintBottom_toTopOf="@+id/calendarView2"
+        app:layout_constraintBottom_toTopOf="@+id/ddayCalendar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTodoTitle" />
 
     <CalendarView
-        android:id="@+id/calendarView2"
+        android:id="@+id/ddayCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -48,7 +48,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTodoContent"
+        app:layout_constraintTop_toBottomOf="@+id/etTodoTask"
         tools:ignore="MissingConstraints" />
 
     <Button
