@@ -68,6 +68,11 @@
         android:name="com.example.mymultifragapplication.EditlistFragment"
         android:label="새 메모"
         tools:layout="@layout/fragment_editlist">
+
+        <argument
+            android:name="itemId"
+            app:argType="long" />
+
         <action
             android:id="@+id/action_editlistFragment_to_todolistFragment"
             app:destination="@id/todolistFragment"
