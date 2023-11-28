@@ -1,5 +1,7 @@
 package com.example.mymultifragapplication
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +14,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymultifragapplication.databinding.FragmentMapBinding
 import com.example.mymultifragapplication.viewmodel.DateViewModel
+import com.example.mymultifragapplication.viewmodel.Locations
 import com.example.mymultifragapplication.viewmodel.TodayLectureViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -25,10 +31,18 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mapView: MapView
     private lateinit var dateText: TextView
     private lateinit var tomorrowButton: Button
+    private lateinit var googleMap: GoogleMap
+
 
     private val viewModel: DateViewModel by activityViewModels()
     private val todayLectureViewModel: TodayLectureViewModel by activityViewModels()
 
+    private val markers = mapOf(
+        "강의동" to R.drawable.location_yellow,
+        "과학관" to R.drawable.location_blue,
+        "기계관" to R.drawable.location_green,
+        "전자관" to R.drawable.location_red
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,21 +81,96 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         todayLectureViewModel.lectures.observe(viewLifecycleOwner) { lectures ->
             binding?.todayList?.adapter = LectureAdapter(lectures)
+            if (::googleMap.isInitialized) {
+                googleMap.clear()
+
+                lectures.forEach { lecture ->
+                    val location = Locations.locations[lecture.location]
+                    val marker = markers[lecture.location]
+                    if (location != null && marker != null) {
+
+                        val originalBitmap = BitmapFactory.decodeResource(resources, marker)
+
+                        val scaledBitmap = Bitmap.createScaledBitmap(
+                            originalBitmap,
+                            originalBitmap.width / 10, originalBitmap.height / 10, false
+                        )
+                        googleMap.addMarker(
+                            MarkerOptions()
+                                .position(location)
+                                .title(lecture.location)
+                                .icon(BitmapDescriptorFactory.fromBitmap(scaledBitmap))
+                        )
+                    }
+                }
+            }
         }
-
-
     }
 
-    override fun onMapReady(googleMap: com.google.android.gms.maps.GoogleMap) {
+    override fun onMapReady(map: GoogleMap) {
+        googleMap = map
         val seoul = LatLng(37.60108, 126.8652) // 항공대의 위도와 경도
         googleMap.moveCamera(
-            CameraUpdateFactory.newLatLngZoom(seoul, 17.8f)
+            CameraUpdateFactory.newLatLngZoom(seoul, 17.2f)
         )
+
+        todayLectureViewModel.lectures.value?.let { lectures ->
+            googleMap.clear()
+
+            lectures.forEach { lecture ->
+                val location = Locations.locations[lecture.location]
+                val marker = markers[lecture.location]
+                if (location != null && marker != null) {
+
+                    val originalBitmap = BitmapFactory.decodeResource(resources, marker)
+
+                    val scaledBitmap = Bitmap.createScaledBitmap(
+                        originalBitmap,
+                        originalBitmap.width / 10,
+                        originalBitmap.height / 10,
+                        false
+                    )
+                    googleMap.addMarker(
+                        MarkerOptions()
+                            .position(location)
+                            .title(lecture.location)
+                            .icon(BitmapDescriptorFactory.fromBitmap(scaledBitmap))
+                    )
+                }
+            }
+        }
     }
 
     override fun onResume() {
         super.onResume()
         mapView.onResume()
+        if (::googleMap.isInitialized) {
+            todayLectureViewModel.lectures.value?.let { lectures ->
+                googleMap.clear()
+
+                lectures.forEach { lecture ->
+                    val location = Locations.locations[lecture.location]
+                    val marker = markers[lecture.location]
+                    if (location != null && marker != null) {
+                        // Load the original bitmap
+                        val originalBitmap = BitmapFactory.decodeResource(resources, marker)
+                        // Create a scaled bitmap
+                        val scaledBitmap = Bitmap.createScaledBitmap(
+                            originalBitmap,
+                            originalBitmap.width / 10,
+                            originalBitmap.height / 10,
+                            false
+                        )
+                        googleMap.addMarker(
+                            MarkerOptions()
+                                .position(location)
+                                .title(lecture.location)
+                                .icon(BitmapDescriptorFactory.fromBitmap(scaledBitmap))
+                        )
+                    }
+                }
+            }
+        }
     }
 
     override fun onPause() {

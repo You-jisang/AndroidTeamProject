@@ -1,31 +1,34 @@
 package com.example.mymultifragapplication
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.example.mymultifragapplication.databinding.FragmentGPSBinding
-import com.example.mymultifragapplication.viewmodel.DateViewModel
-import com.example.mymultifragapplication.viewmodel.TomorrowViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
 
 class GPSFragment : Fragment(), OnMapReadyCallback {
 
     private var binding: FragmentGPSBinding? = null
     private lateinit var mapView: MapView
-    private lateinit var dateText: TextView
-    private lateinit var refreshButton: Button
-
-    private val viewModel: DateViewModel by activityViewModels()
-    private val tomorrowViewModel: TomorrowViewModel by activityViewModels()
+    private lateinit var myLocation: ImageView
+    private lateinit var googleMap: GoogleMap
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +38,50 @@ class GPSFragment : Fragment(), OnMapReadyCallback {
         mapView = binding?.map3!!
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+        myLocation = binding?.myLocation!!
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        myLocation.setOnClickListener {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // Request location permissions
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ),
+                    1000
+                )
+            } else {
+                fusedLocationClient.lastLocation
+                    .addOnSuccessListener { location: Location? ->
+                        location?.let {
+                            if (::googleMap.isInitialized) {
+                                val userLocation = LatLng(it.latitude, it.longitude)
+                                val markerIcon =
+                                    BitmapDescriptorFactory.fromResource(R.drawable.location_yellow)
+                                googleMap.addMarker(
+                                    MarkerOptions().position(userLocation).icon(markerIcon)
+                                )
+                                googleMap.moveCamera(
+                                    CameraUpdateFactory.newLatLngZoom(
+                                        userLocation,
+                                        17.3f
+                                    )
+                                )
+                            }
+                        }
+                    }
+            }
+        }
 
         return binding?.root
     }
