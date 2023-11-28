@@ -40,7 +40,7 @@ class TomorrowViewModel : ViewModel() {
         val weekday = getWeekday(calendar)
 
         // 변경이 감지되면 Repository에서 반환한 LiveData(lectures)를 MutableLiveData인 _lectures에 저장한다.
-        repository.getLectures(weekday).observeForever { lectures ->
+        repository.getLectures(weekday) { lectures ->
             _lectures.value = lectures
         }
     }
