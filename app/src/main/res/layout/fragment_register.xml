@@ -47,8 +47,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="장소"
+                android:text=" 장소"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ㅤㅤ" />
 
             <EditText
                 android:id="@+id/class_building"
@@ -81,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
-                android:hint="요일"
+                android:hint="월(요일)"
                 android:inputType="text" />
 
             <TextView
@@ -89,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="빈칸" />
+                android:text="ㅤㅤ" />
 
             <EditText
                 android:id="@+id/time_start_h"
@@ -97,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
-                android:hint="시작시"
+                android:hint="09"
                 android:inputType="text" />
 
             <EditText
@@ -106,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
-                android:hint="시작분"
+                android:hint="00"
                 android:inputType="text" />
 
             <TextView
@@ -122,10 +129,10 @@
                 android:id="@+id/time_end_h"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="17"
+                android:inputType="text"
                 android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:hint="끝시"
-                android:inputType="text" />
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/time_end_m"
@@ -133,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
-                android:hint="끝분"
+                android:hint="30"
                 android:inputType="text" />
 
         </LinearLayout>
@@ -167,6 +174,7 @@
                 android:minWidth="48dp"
                 android:minHeight="48dp"
                 android:text="취소" />
+
         </LinearLayout>
 
     </LinearLayout>

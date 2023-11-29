@@ -15,11 +15,22 @@ class MainFragment : Fragment() {
     private var className: String? = null
     private var classProfessor: String? = null
 
+    private var classDay : String? = null
+    private var timeStartH : String? = null
+    private var timeStartM : String? = null
+    private var timeEndH : String? = null
+    private var timeEndM : String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             className = it.getString("CLASS_NAME")
             classProfessor = it.getString("CLASS_PROFESSOR")
+            classDay = it.getString("CLASS_DAY")
+            timeStartH = it.getString("TIME_START_H")
+            timeStartM = it.getString("TIME_START_M")
+            timeEndH = it.getString("TIME_END_H")
+            timeEndM = it.getString("TIME_END_M")
         }
     }
 
