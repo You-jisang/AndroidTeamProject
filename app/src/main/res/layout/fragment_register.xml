@@ -7,6 +7,7 @@
     android:layout_marginTop="16dp">
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -32,10 +33,10 @@
             android:id="@+id/class_professor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
             android:hint="교수명"
-            android:inputType="text" />
+            android:inputType="text"
+            android:minWidth="48dp"
+            android:minHeight="48dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -55,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="ㅤㅤ" />
+                android:text="ㅤ" />
 
             <EditText
                 android:id="@+id/class_building"
@@ -86,10 +87,10 @@
                 android:id="@+id/class_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
                 android:hint="월(요일)"
-                android:inputType="text" />
+                android:inputType="text"
+                android:minWidth="48dp"
+                android:minHeight="48dp" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -102,19 +103,19 @@
                 android:id="@+id/time_start_h"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
                 android:hint="09"
-                android:inputType="text" />
+                android:inputType="text"
+                android:minWidth="48dp"
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/time_start_m"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
                 android:hint="00"
-                android:inputType="text" />
+                android:inputType="text"
+                android:minWidth="48dp"
+                android:minHeight="48dp" />
 
             <TextView
                 android:id="@+id/time_split"
@@ -138,44 +139,47 @@
                 android:id="@+id/time_end_m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
                 android:hint="30"
-                android:inputType="text" />
+                android:inputType="text"
+                android:minWidth="48dp"
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
         <Button
-            android:id="@+id/add_day"
+            android:id="@+id/btn_schedule_add_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:text="요일 추가" />
+            android:text="등록" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ㅤ" />
 
-            <Button
-                android:id="@+id/btn_schedule_add_confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:text="등록" />
-
-            <Button
-                android:id="@+id/btn_schedule_add_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
-                android:text="취소" />
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/btn_schedule_add_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="취소" />
 
     </LinearLayout>
 
