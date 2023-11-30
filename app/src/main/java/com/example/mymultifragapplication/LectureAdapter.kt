@@ -19,7 +19,7 @@ class LectureAdapter(private var lectures: List<Lecture>) :
             binding.textStartMin.text = lecture.startTimeMin
             binding.textEndHour.text = lecture.endTimeHour
             binding.textEndMin.text = lecture.endTimeMin
-          
+
             // 과목에 따라 마커 이미지를 변경
             val markerImageId = when (lecture.location) {
                 "강의동" -> R.drawable.location_yellow

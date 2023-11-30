@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mymultifragapplication.databinding.FragmentRegisterBinding
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.mymultifragapplication.viewmodel.ScheduleAddViewModel
 
 
@@ -53,7 +51,16 @@ class RegisterFragment : Fragment() {
             val endTimeHour = binding?.timeEndH?.text.toString()
             val endTimeMin = binding?.timeEndM?.text.toString()
 
-            viewModel.saveDataToFirebase(day, name, location, locationNum, startTimeHour, startTimeMin, endTimeHour, endTimeMin)
+            viewModel.saveDataToFirebase(
+                day,
+                name,
+                location,
+                locationNum,
+                startTimeHour,
+                startTimeMin,
+                endTimeHour,
+                endTimeMin
+            )
 
             findNavController().navigate(R.id.action_registerFragment_to_mainFragment)
 
