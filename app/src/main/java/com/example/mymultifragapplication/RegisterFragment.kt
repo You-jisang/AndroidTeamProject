@@ -7,14 +7,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mymultifragapplication.databinding.FragmentRegisterBinding
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.mymultifragapplication.viewmodel.ScheduleAddViewModel
 
 
 // import com.example.mymultifragapplication.viewmodel.ScheduleAddViewModel
 
 class RegisterFragment : Fragment() {
-
+    val viewModel: ScheduleAddViewModel by activityViewModels()
     var binding: FragmentRegisterBinding? = null
     // private lateinit var scheduleAddViewModel: ScheduleAddViewModel
+    private fun convertKoreanToEnglishDay(input: String): String {
+        return when (input) {
+            "월" -> "MONDAY"
+            "화" -> "TUESDAY"
+            "수" -> "WEDNESDAY"
+            "목" -> "THURSDAY"
+            "금" -> "FRIDAY"
+            else -> "Invalid input" // 잘못된 입력 처리
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,74 +38,31 @@ class RegisterFragment : Fragment() {
         return binding?.root
     }
 
-    private fun saveDataToBundle(): Bundle {
-        val className = binding?.className?.text.toString()
-        val classProfessor = binding?.classProfessor?.text.toString()
-        val classBuilding = binding?.classBuilding?.text.toString()
-        val classLocation = binding?.classLocation?.text.toString()
-        val classDay = binding?.classDay?.text.toString()
-        val timeStartH = binding?.timeStartH?.text.toString()
-        val timeStartM = binding?.timeStartM?.text.toString()
-        val timeEndH = binding?.timeEndH?.text.toString()
-        val timeEndM = binding?.timeEndM?.text.toString()
-
-        val bundle = Bundle().apply {
-            putString("CLASS_NAME", className)
-            putString("CLASS_PROFESSOR", classProfessor)
-            putString("CLASS_LOCATION", classLocation)
-            putString("CLASS_BUILDING", classBuilding)
-            putString("CLASS_DAY", classDay)
-            putString("TIME_START_H", timeStartH)
-            putString("TIME_START_M", timeStartM)
-            putString("TIME_END_H", timeEndH)
-            putString("TIME_END_M", timeEndM)
-        }
-        return bundle
-    }
-
-    private fun onClickConfirmButton() {
-        val bundle = saveDataToBundle()
-        val navController = findNavController()
-        navController.navigate(R.id.action_registerFragment_to_mainFragment, bundle)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.addDay?.setOnClickListener {
-
-        }
 
         binding?.btnScheduleAddConfirm?.setOnClickListener {
-            onClickConfirmButton()
+            val name = binding?.className?.text.toString()
+            val professor = binding?.classProfessor?.text.toString()
+            val location = binding?.classBuilding?.text.toString()
+            val locationNum = binding?.classLocation?.text.toString()
+            val day_k = binding?.classDay?.text.toString()
+            val day = convertKoreanToEnglishDay(day_k)
+            val startTimeHour = binding?.timeStartH?.text.toString()
+            val startTimeMin = binding?.timeStartM?.text.toString()
+            val endTimeHour = binding?.timeEndH?.text.toString()
+            val endTimeMin = binding?.timeEndM?.text.toString()
+
+            viewModel.saveDataToFirebase(day, name, location, locationNum, startTimeHour, startTimeMin, endTimeHour, endTimeMin)
+
+            findNavController().navigate(R.id.action_registerFragment_to_mainFragment)
+
         }
         binding?.btnScheduleAddCancel?.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_mainFragment)
         }
 
-        //scheduleAddViewModel = ViewModelProvider(requireActivity()).get(ScheduleAddViewModel::class.java)
-
-        /*btnScheduleAddConfirm.setOnClickListener {
-            val className = editTextClassName.text.toString()
-            val classProfessor = editTextClassProfessor.text.toString()
-            val classDay = editTextClassDay.text.toString()
-            val timeStartH = editTextTimeStartH.text.toInt()
-            val timeStartM = editTextTimeStartM.text.toInt()
-            val timeEndH = editTextTimeEndH.text.toInt()
-            val timeEndM = editTextTimeEndM.text.toInt()
-
-            val dataList = listOf(
-                className,
-                classProfessor
-                classLocation
-                classDay
-                timeStartH
-                timeStartM
-                timeEndH
-                timeEndM
-            )
-            scheduleAddViewModel.setInputData(dataList)
-        }*/
     }
 
     override fun onDestroyView() {
@@ -100,3 +71,5 @@ class RegisterFragment : Fragment() {
     }
 
 }
+
+// 요일추가, 시간표 삭제하는코드, 시간표 추가하기

@@ -13,13 +13,12 @@ class LectureAdapter(private var lectures: List<Lecture>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(lecture: Lecture) {
             binding.textName.text = lecture.name
-            binding.textLocation.text = lecture.location
             binding.textLocationNum.text = lecture.locationNum
             binding.textStartHour.text = lecture.startTimeHour
             binding.textStartMin.text = lecture.startTimeMin
             binding.textEndHour.text = lecture.endTimeHour
             binding.textEndMin.text = lecture.endTimeMin
-
+          
             // 과목에 따라 마커 이미지를 변경
             val markerImageId = when (lecture.location) {
                 "강의동" -> R.drawable.location_yellow

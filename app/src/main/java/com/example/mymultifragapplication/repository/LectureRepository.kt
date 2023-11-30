@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.tasks.await
 
 class LectureRepository {
     // firebase realtime database에서 timetable 레퍼런스 가져오기
@@ -25,5 +26,14 @@ class LectureRepository {
             }
         })
     }
+
+    //test
+
+
+    fun saveLectureToFirebase(day: String, lecture: Lecture) {
+        val addRef = lectureRef.child(day.lowercase()).push()
+        addRef.setValue(lecture)
+    }
+
 }
 
