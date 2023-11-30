@@ -11,7 +11,6 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,10 +19,12 @@ import com.example.mymultifragapplication.databinding.FragmentTodolistBinding
 import com.example.mymultifragapplication.repository.Todo
 import com.example.mymultifragapplication.viewmodel.TodoViewModel
 
+@Suppress("DEPRECATION")
 class TodolistFragment : Fragment(), TodoCheckMenuAdapter.TaskItemClickListener {
     private lateinit var viewModel: TodoViewModel
     private lateinit var todolistAdapter: TodoCheckMenuAdapter
     private lateinit var recyclerViewAdapter: TodoCheckMenuAdapter
+
     var binding: FragmentTodolistBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,11 +70,10 @@ class TodolistFragment : Fragment(), TodoCheckMenuAdapter.TaskItemClickListener 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
+        viewModel = ViewModelProvider(this)[TodoViewModel::class.java]
         binding = FragmentTodolistBinding.inflate(inflater)
         return binding?.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -90,10 +90,10 @@ class TodolistFragment : Fragment(), TodoCheckMenuAdapter.TaskItemClickListener 
             findNavController().navigate(R.id.action_todolistFragment_to_editlistFragment)
         }
 
-        viewModel.allTasks.observe(viewLifecycleOwner, Observer { tasks ->
-            recyclerViewAdapter.setData(tasks)
+        viewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+            this.recyclerViewAdapter.setData(tasks)
             recyclerViewAdapter.notifyDataSetChanged()  // 데이터 변경을 알림
-        })
+        }
     }
 
     override fun onTaskItemChecked(id: Long, isChecked: Boolean) {
@@ -102,7 +102,7 @@ class TodolistFragment : Fragment(), TodoCheckMenuAdapter.TaskItemClickListener 
 }
 
 
-// 체크박스 표시
+// 할 일 목록을 화면에 표시
 class TodoCheckMenuAdapter(private val listener: TaskItemClickListener) :
     RecyclerView.Adapter<TodoCheckMenuAdapter.TodoViewHolder>() {
     private var tasks = emptyList<Todo>()
@@ -138,7 +138,7 @@ class TodoCheckMenuAdapter(private val listener: TaskItemClickListener) :
                 checkedItems.remove(currentItem.id!!)
             }
 
-            listener.onTaskItemChecked(currentItem.id!!, isChecked)
+            listener.onTaskItemChecked(currentItem.id, isChecked)
         }
 
         holder.source.text = currentItem.title
