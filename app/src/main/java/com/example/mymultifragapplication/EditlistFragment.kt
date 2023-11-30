@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.mymultifragapplication.databinding.FragmentEditlistBinding
@@ -18,13 +17,14 @@ import java.util.Locale
 
 class EditlistFragment : Fragment() {
     private lateinit var viewModel: TodoViewModel
+
     var binding: FragmentEditlistBinding? = null
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
+        viewModel = ViewModelProvider(this)[TodoViewModel::class.java]
         binding = FragmentEditlistBinding.inflate(inflater)
         return binding?.root
     }
@@ -43,10 +43,10 @@ class EditlistFragment : Fragment() {
         }.timeInMillis
 
         if (id != null) {
-            viewModel.getTask(id).observe(viewLifecycleOwner, Observer { todo ->
+            viewModel.getTask(id).observe(viewLifecycleOwner) { todo ->
                 binding?.etTodoTitle?.setText(todo?.title)
                 binding?.etTodoTask?.setText(todo?.task)
-            })
+            }
         }
 
         binding?.ddayCalendar?.setOnDateChangeListener { _, year, month, dayOfMonth ->

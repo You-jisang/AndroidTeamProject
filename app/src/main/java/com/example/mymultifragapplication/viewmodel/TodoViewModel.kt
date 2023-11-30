@@ -12,15 +12,7 @@ class TodoViewModel(private val db: TodoRepository = TodoRepository()) : ViewMod
 
     fun updateStatus(id: Long, isChecked: Boolean) = db.updateStatus(id, isChecked)
 
-    fun updateTask(id: Long, task: String) = db.updateTask(id, task)
-
     fun updateTodo(todo: Todo) = db.updateTodo(todo)
-
-    fun editTask(id: Long, newTask: String) {
-        updateTask(id, newTask)
-    }
-
-    fun deleteTask(id: Long) = db.deleteTask(id)
 
     fun deleteTasks(ids: List<Long>) {
         if (ids.isEmpty()) return

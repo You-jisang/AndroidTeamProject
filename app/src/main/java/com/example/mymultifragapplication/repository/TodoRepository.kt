@@ -26,9 +26,6 @@ class TodoRepository {
     fun updateStatus(id: Long, isChecked: Boolean) =
         database.child(id.toString()).child("isChecked").setValue(isChecked)
 
-    fun updateTask(id: Long, task: String) =
-        database.child(id.toString()).child("task").setValue(task)
-
     fun updateTodo(todo: Todo) = todo.id?.let { database.child(it.toString()).setValue(todo) }
 
     fun deleteTask(id: Long): Task<Void> = database.child(id.toString()).removeValue()
