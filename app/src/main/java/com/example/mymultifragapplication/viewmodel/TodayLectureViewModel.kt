@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mymultifragapplication.repository.LectureRepository
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 // ViewModel 상속 -> 데이터와 ui 분리하여 관리
 class TodayLectureViewModel : ViewModel() {
@@ -21,15 +23,8 @@ class TodayLectureViewModel : ViewModel() {
 
     //요일 문자열로 반환
     private fun getWeekday(calendar: Calendar): String {
-        return when (calendar.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.MONDAY -> "monday"
-            Calendar.TUESDAY -> "tuesday"
-            Calendar.WEDNESDAY -> "wednesday"
-            Calendar.THURSDAY -> "thursday"
-            Calendar.FRIDAY -> "friday"
-            Calendar.SATURDAY -> "saturday"
-            else -> "sunday"
-        }
+        val format = SimpleDateFormat("EEEE", Locale.US)
+        return format.format(calendar.time).uppercase(Locale.US)
     }
 
     private fun updateLecturesForToday() {
@@ -37,7 +32,7 @@ class TodayLectureViewModel : ViewModel() {
         val weekday = getWeekday(Calendar.getInstance())
 
         // 변경이 감지되면 Repository에서 반환한 LiveData(lectures)를 MutableLiveData인 _lectures에 저장한다.
-        repository.getLectures(weekday).observeForever { lectures ->
+        repository.getLectures(weekday) { lectures ->
             _lectures.value = lectures
         }
     }
