@@ -27,11 +27,8 @@ class LectureRepository {
         })
     }
 
-    //test
-
-
     fun saveLectureToFirebase(day: String, lecture: Lecture) {
-        val addRef = lectureRef.child(day.lowercase()).push()
+        val addRef = lectureRef.child(day).push()
         addRef.setValue(lecture)
     }
 

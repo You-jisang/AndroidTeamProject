@@ -15,9 +15,4 @@ class ScheduleAddViewModel : ViewModel() {
         // Day에 따라 Firebase의 데이터 구조에 추가
         repository.saveLectureToFirebase(day, lecture)
     }
-
-    /*private fun isDayValid(day: String): Boolean {
-        return day in listOf("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY")
-    }*/
-
 }

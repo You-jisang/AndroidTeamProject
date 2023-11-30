@@ -13,6 +13,7 @@ class LectureAdapter(private var lectures: List<Lecture>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(lecture: Lecture) {
             binding.textName.text = lecture.name
+            binding.textLocation.text = lecture.location
             binding.textLocationNum.text = lecture.locationNum
             binding.textStartHour.text = lecture.startTimeHour
             binding.textStartMin.text = lecture.startTimeMin

@@ -18,7 +18,6 @@ import com.example.mymultifragapplication.viewmodel.ScheduleAddViewModel
 class RegisterFragment : Fragment() {
     val viewModel: ScheduleAddViewModel by activityViewModels()
     var binding: FragmentRegisterBinding? = null
-    // private lateinit var scheduleAddViewModel: ScheduleAddViewModel
     private fun convertKoreanToEnglishDay(input: String): String {
         return when (input) {
             "월" -> "MONDAY"
@@ -71,5 +70,3 @@ class RegisterFragment : Fragment() {
     }
 
 }
-
-// 요일추가, 시간표 삭제하는코드, 시간표 추가하기
