@@ -15,7 +15,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.concurrent.TimeUnit
 
 class EditlistFragment : Fragment() {
     private lateinit var viewModel: TodoViewModel
@@ -35,11 +34,34 @@ class EditlistFragment : Fragment() {
 
         val id = arguments?.getLong("itemId", -1)
 
+        // 날짜 선택 안하면 자동으로 오늘 날짜로 초기화
+        var selectday: Long = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 1)
+            set(Calendar.MILLISECOND, 0)
+        }.timeInMillis
+
         if (id != null) {
             viewModel.getTask(id).observe(viewLifecycleOwner, Observer { todo ->
                 binding?.etTodoTitle?.setText(todo?.title)
                 binding?.etTodoTask?.setText(todo?.task)
             })
+        }
+
+        binding?.ddayCalendar?.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val selectedCalendar = Calendar.getInstance().apply {
+                set(Calendar.YEAR, year)
+                set(Calendar.MONTH, month)
+                set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                // selectday와 todat 간 서로 다른 시간대에 있는 시간 차이를 없애기 위해 동일한 시간대 설정
+                set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
+                set(Calendar.MILLISECOND, 0)
+            }
+
+            selectday = selectedCalendar.timeInMillis
         }
 
         binding?.btnSave?.setOnClickListener {
@@ -48,9 +70,22 @@ class EditlistFragment : Fragment() {
             val task = binding?.etTodoTask?.text.toString()
             val timestamp = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(Date())
 
-            // D-day 구하기
+            // val dday 값인 D-day 구하기
+            val today = Calendar.getInstance().apply { // 현재 날짜
+                set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
+                set(Calendar.MILLISECOND, 0)
+            }.timeInMillis
 
-            val dday = 0
+            val dDayValue = (selectday - today) / (24 * 60 * 60 * 1000) // 밀리초를 날짜로 변환
+
+            val dday = when {
+                dDayValue < 0 -> "D+${-dDayValue}" // 선택한 날짜가 오늘 날짜 이전(과거)이면 D+Day로 표시
+                dDayValue.toInt() == 0 -> "D-Day"
+                else -> "D-${dDayValue}" // 선택한 날짜가 오늘 날짜 이후(미래)라면 D-Day로 표시
+            }
+
 
             // 여기까지
 
