@@ -14,7 +14,7 @@ data class Todo(
     val title: String? = null,
     val task: String? = null,
     val timestamp: String? = null,
-    val dday: Int? = null
+    val dday: String? = null
 )
 
 class TodoRepository {
