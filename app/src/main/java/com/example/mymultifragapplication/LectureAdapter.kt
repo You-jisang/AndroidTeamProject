@@ -14,11 +14,14 @@ class LectureAdapter(private var lectures: List<Lecture>) :
         fun bind(lecture: Lecture) {
             binding.textName.text = lecture.name
             binding.textLocation.text = lecture.location
-            binding.textStart.text = "${lecture.startTime}"
-            binding.textEnd.text = "${lecture.endTime}"
+            binding.textLocationNum.text = lecture.locationNum
+            binding.textStartHour.text = lecture.startTimeHour
+            binding.textStartMin.text = lecture.startTimeMin
+            binding.textEndHour.text = lecture.endTimeHour
+            binding.textEndMin.text = lecture.endTimeMin
 
             // 과목에 따라 마커 이미지를 변경
-            val markerImageResId = when (lecture.location) {
+            val markerImageId = when (lecture.location) {
                 "강의동" -> R.drawable.location_yellow
                 "과학관" -> R.drawable.location_blue
                 "전자관" -> R.drawable.location_red
@@ -26,7 +29,7 @@ class LectureAdapter(private var lectures: List<Lecture>) :
 
                 else -> R.drawable.location_yellow // 기본 마커 이미지
             }
-            binding.imageView.setImageResource(markerImageResId)
+            binding.imageView.setImageResource(markerImageId)
         }
     }
 

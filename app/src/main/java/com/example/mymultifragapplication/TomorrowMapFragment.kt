@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymultifragapplication.databinding.FragmentTomorrowMapBinding
 import com.example.mymultifragapplication.viewmodel.DateViewModel
+import com.example.mymultifragapplication.viewmodel.Lecture
 import com.example.mymultifragapplication.viewmodel.Locations
 import com.example.mymultifragapplication.viewmodel.TomorrowViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -30,7 +31,7 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
     private var binding: FragmentTomorrowMapBinding? = null
     private lateinit var mapView: MapView
     private lateinit var dateText: TextView
-    private lateinit var TodayButton: Button
+    private lateinit var todayButton: Button
     private lateinit var googleMap: GoogleMap
 
     private val viewModel: DateViewModel by activityViewModels()
@@ -44,6 +45,30 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
         "전자관" to R.drawable.location_red
     )
 
+    private fun updateMarkers(lectures: List<Lecture>) {
+        googleMap.clear()
+
+        lectures.forEach { lecture ->
+            val location = Locations.locations[lecture.location]
+            val marker = markers[lecture.location]
+            if (location != null && marker != null) {
+                val originalBitmap = BitmapFactory.decodeResource(resources, marker)
+                val scaledBitmap = Bitmap.createScaledBitmap(
+                    originalBitmap,
+                    originalBitmap.width / 10,
+                    originalBitmap.height / 10,
+                    false
+                )
+                googleMap.addMarker(
+                    MarkerOptions()
+                        .position(location)
+                        .title(lecture.location)
+                        .icon(BitmapDescriptorFactory.fromBitmap(scaledBitmap))
+                )
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,7 +76,7 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
         binding = FragmentTomorrowMapBinding.inflate(inflater, container, false)
         mapView = binding?.map2!!
         dateText = binding?.tomorrowText!!
-        TodayButton = binding?.buttonTomorrow!!
+        todayButton = binding?.buttonTomorrow!!
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
@@ -78,27 +103,7 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
         tomorrowViewModel.lectures.observe(viewLifecycleOwner) { lectures ->
             binding?.tomorrowList?.adapter = LectureAdapter(lectures)
             if (::googleMap.isInitialized) {
-                googleMap.clear()
-
-                lectures.forEach { lecture ->
-                    val location = Locations.locations[lecture.location]
-                    val marker = markers[lecture.location]
-                    if (location != null && marker != null) {
-
-                        val originalBitmap = BitmapFactory.decodeResource(resources, marker)
-
-                        val scaledBitmap = Bitmap.createScaledBitmap(
-                            originalBitmap,
-                            originalBitmap.width / 10, originalBitmap.height / 10, false
-                        )
-                        googleMap.addMarker(
-                            MarkerOptions()
-                                .position(location)
-                                .title(lecture.location)
-                                .icon(BitmapDescriptorFactory.fromBitmap(scaledBitmap))
-                        )
-                    }
-                }
+                updateMarkers(lectures)
             }
         }
     }
@@ -106,66 +111,18 @@ class TomorrowMapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
-        val seoul = LatLng(37.60108, 126.8652) // 항공대의 위도와 경도
+        val target = LatLng(37.60108, 126.8652) // 항공대의 위도와 경도
         googleMap.moveCamera(
-            CameraUpdateFactory.newLatLngZoom(seoul, 17.2f)
-        ) // 카메라를 서울로 이동하고, 줌 레벨을 설
-        tomorrowViewModel.lectures.value?.let { lectures ->
-            googleMap.clear()
-
-            lectures.forEach { lecture ->
-                val location = Locations.locations[lecture.location]
-                val marker = markers[lecture.location]
-                if (location != null && marker != null) {
-
-                    val originalBitmap = BitmapFactory.decodeResource(resources, marker)
-
-                    val scaledBitmap = Bitmap.createScaledBitmap(
-                        originalBitmap,
-                        originalBitmap.width / 10,
-                        originalBitmap.height / 10,
-                        false
-                    )
-                    googleMap.addMarker(
-                        MarkerOptions()
-                            .position(location)
-                            .title(lecture.location)
-                            .icon(BitmapDescriptorFactory.fromBitmap(scaledBitmap))
-                    )
-                }
-            }
-        }
+            CameraUpdateFactory.newLatLngZoom(target, 17.2f)
+        ) // 카메라를 타겟으로 이동하고, 줌 레벨을 설정
+        tomorrowViewModel.lectures.value?.let { updateMarkers(it) }
     }
 
     override fun onResume() {
         super.onResume()
         mapView.onResume()
         if (::googleMap.isInitialized) {
-            tomorrowViewModel.lectures.value?.let { lectures ->
-                googleMap.clear()
-
-                lectures.forEach { lecture ->
-                    val location = Locations.locations[lecture.location]
-                    val marker = markers[lecture.location]
-                    if (location != null && marker != null) {
-                        // Load the original bitmap
-                        val originalBitmap = BitmapFactory.decodeResource(resources, marker)
-                        // Create a scaled bitmap
-                        val scaledBitmap = Bitmap.createScaledBitmap(
-                            originalBitmap,
-                            originalBitmap.width / 10,
-                            originalBitmap.height / 10,
-                            false
-                        )
-                        googleMap.addMarker(
-                            MarkerOptions()
-                                .position(location)
-                                .title(lecture.location)
-                                .icon(BitmapDescriptorFactory.fromBitmap(scaledBitmap))
-                        )
-                    }
-                }
-            }
+            tomorrowViewModel.lectures.value?.let { updateMarkers(it) }
         }
     }
 
