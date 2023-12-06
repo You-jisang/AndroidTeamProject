@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.mymultifragapplication.MainFragment"
+        android:label="시간표"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_semesterFragment"
+            app:destination="@id/todolistFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.mymultifragapplication.MapFragment"
+        android:label="오늘 일정"
+        tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_mapFragment_to_tomorrowMapFragment"
+            app:destination="@id/tomorrowMapFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_GPSFragment"
+            app:destination="@id/GPSFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.mymultifragapplication.RegisterFragment"
+        android:label="시간표 등록"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todolistFragment"
+        android:name="com.example.mymultifragapplication.TodolistFragment"
+        android:label="To-Do-List"
+        tools:layout="@layout/fragment_todolist">
+        <action
+            android:id="@+id/action_todolistFragment_to_editlistFragment"
+            app:destination="@id/editlistFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tomorrowMapFragment"
+        android:name="com.example.mymultifragapplication.TomorrowMapFragment"
+        android:label="내일 일정"
+        tools:layout="@layout/fragment_tomorrow_map">
+        <action
+            android:id="@+id/action_tomorrowMapFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/GPSFragment"
+        android:name="com.example.mymultifragapplication.GPSFragment"
+        android:label="네비게이션"
+        tools:layout="@layout/fragment_g_p_s" />
+    <fragment
+        android:id="@+id/editlistFragment"
+        android:name="com.example.mymultifragapplication.EditlistFragment"
+        android:label="새 메모"
+        tools:layout="@layout/fragment_editlist">
+
+        <argument
+            android:name="itemId"
+            app:argType="long" />
+
+        <action
+            android:id="@+id/action_editlistFragment_to_todolistFragment"
+            app:destination="@id/todolistFragment"
+            app:popUpTo="@id/todolistFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "528608978020",
+    "project_id": "my-multi-frag-application",
+    "storage_bucket": "my-multi-frag-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528608978020:android:53d34f930dac1918ecab71",
+        "android_client_info": {
+          "package_name": "com.example.mymultifragapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD43FV2vrXK7NEs7hEFkSIMzo1Tl6aeZis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
