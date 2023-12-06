@@ -4,9 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mymultifragapplication.repository.LectureRepository
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class ToTimetableViewModel : ViewModel() {
     private val repository = LectureRepository()
@@ -43,21 +40,25 @@ class ToTimetableViewModel : ViewModel() {
             _mondayLectures.value = lectures
         }
     }
+
     fun updateLecturesForTuesday() {
         repository.getLectures("TUESDAY") { lectures ->
             _tuesdayLectures.value = lectures
         }
     }
+
     fun updateLecturesForWednesday() {
         repository.getLectures("WEDNESDAY") { lectures ->
             _wednesdayLectures.value = lectures
         }
     }
+
     fun updateLecturesForThursday() {
         repository.getLectures("THURSDAY") { lectures ->
             _thursdayLectures.value = lectures
         }
     }
+
     fun updateLecturesForFriday() {
         repository.getLectures("FRIDAY") { lectures ->
             _fridayLectures.value = lectures
@@ -67,15 +68,19 @@ class ToTimetableViewModel : ViewModel() {
     fun getMondayLectures(): LiveData<List<Lecture>> {
         return mondayLectures
     }
+
     fun getTuesdayLectures(): LiveData<List<Lecture>> {
         return tuesdayLectures
     }
+
     fun getWednesdayLectures(): LiveData<List<Lecture>> {
         return wednesdayLectures
     }
+
     fun getThursdayLectures(): LiveData<List<Lecture>> {
         return thursdayLectures
     }
+
     fun getFridayLectures(): LiveData<List<Lecture>> {
         return fridayLectures
     }

@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mymultifragapplication.databinding.FragmentMainBinding
-import kotlin.random.Random
-import androidx.fragment.app.activityViewModels
 import com.example.mymultifragapplication.viewmodel.Lecture
 import com.example.mymultifragapplication.viewmodel.ToTimetableViewModel
+import kotlin.random.Random
 
 
 class MainFragment : Fragment() {
@@ -80,10 +80,24 @@ class MainFragment : Fragment() {
     inner class CellManager {
         fun fillCellsWithLectureInfo(day: String, lecture: Lecture) {
             val info = "${lecture.name}\n${lecture.location} ${lecture.locationNum}"
-            fillCellsForTimeRange(day, lecture.startTimeHour.toInt(), lecture.startTimeMin.toInt(), lecture.endTimeHour.toInt(), lecture.endTimeMin.toInt(), info)
+            fillCellsForTimeRange(
+                day,
+                lecture.startTimeHour.toInt(),
+                lecture.startTimeMin.toInt(),
+                lecture.endTimeHour.toInt(),
+                lecture.endTimeMin.toInt(),
+                info
+            )
         }
 
-        private fun fillCellsForTimeRange(day: String, startHour: Int, startMinute: Int, endHour: Int, endMinute: Int, info: String) {
+        private fun fillCellsForTimeRange(
+            day: String,
+            startHour: Int,
+            startMinute: Int,
+            endHour: Int,
+            endMinute: Int,
+            info: String
+        ) {
             var currentHour = startHour
             var currentMinute = startMinute
             val colorRand = getRandomColor()

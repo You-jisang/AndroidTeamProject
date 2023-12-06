@@ -43,7 +43,9 @@ class TodolistFragment : Fragment(), TodoCheckMenuAdapter.TaskItemClickListener 
                 if (todolistAdapter.checkedItems.size == 1) {
                     val itemToEditId = todolistAdapter.checkedItems.keys.first()
                     val action =
-                        TodolistFragmentDirections.actionTodolistFragmentToEditlistFragment(itemToEditId)
+                        TodolistFragmentDirections.actionTodolistFragmentToEditlistFragment(
+                            itemToEditId
+                        )
 
                     findNavController().navigate(action)
 

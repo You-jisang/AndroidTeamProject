@@ -8,6 +8,7 @@ import com.example.mymultifragapplication.repository.TodoRepository
 class TodoViewModel(private val db: TodoRepository = TodoRepository()) : ViewModel() {
     val task: MutableLiveData<Todolist> = MutableLiveData()
     val editTasks: MutableLiveData<List<Todolist>> = MutableLiveData()
+
     init {
         db.getAllTasks(editTasks)
     }
