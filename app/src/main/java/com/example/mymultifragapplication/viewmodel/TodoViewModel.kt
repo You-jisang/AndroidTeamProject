@@ -1,18 +1,22 @@
 package com.example.mymultifragapplication.viewmodel
 
-import androidx.lifecycle.LiveData
+
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mymultifragapplication.repository.Todo
 import com.example.mymultifragapplication.repository.TodoRepository
 
 class TodoViewModel(private val db: TodoRepository = TodoRepository()) : ViewModel() {
-    val allTasks: LiveData<List<Todo>> = db.getAllTasks()
+    val task: MutableLiveData<Todolist> = MutableLiveData()
+    val editTasks: MutableLiveData<List<Todolist>> = MutableLiveData()
+    init {
+        db.getAllTasks(editTasks)
+    }
 
-    fun addTask(todo: Todo) = db.addTask(todo)
+    fun addTask(todo: Todolist) = db.addTask(todo)
 
     fun updateStatus(id: Long, isChecked: Boolean) = db.updateStatus(id, isChecked)
 
-    fun updateTodo(todo: Todo) = db.updateTodo(todo)
+    fun updateTodo(todo: Todolist) = db.updateTodo(todo)
 
     fun deleteTasks(ids: List<Long>) {
         if (ids.isEmpty()) return
@@ -22,7 +26,7 @@ class TodoViewModel(private val db: TodoRepository = TodoRepository()) : ViewMod
         }
     }
 
-    fun getTask(id: Long): LiveData<Todo> {
-        return db.getTask(id)
+    fun getTask(id: Long) {
+        db.getTask(id, task)
     }
 }

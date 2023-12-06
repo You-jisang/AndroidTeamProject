@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.mymultifragapplication.databinding.FragmentEditlistBinding
-import com.example.mymultifragapplication.repository.Todo
 import com.example.mymultifragapplication.viewmodel.TodoViewModel
+import com.example.mymultifragapplication.viewmodel.Todolist
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -17,9 +17,7 @@ import java.util.Locale
 
 class EditlistFragment : Fragment() {
     private lateinit var viewModel: TodoViewModel
-
-    var binding: FragmentEditlistBinding? = null
-
+    private var binding: FragmentEditlistBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,12 +40,16 @@ class EditlistFragment : Fragment() {
             set(Calendar.MILLISECOND, 0)
         }.timeInMillis
 
+
+        // id 불러오기
         if (id != null) {
-            viewModel.getTask(id).observe(viewLifecycleOwner) { todo ->
+            viewModel.getTask(id = id)
+            viewModel.task.observe(viewLifecycleOwner) { todo ->
                 binding?.etTodoTitle?.setText(todo?.title)
                 binding?.etTodoTask?.setText(todo?.task)
             }
         }
+
 
         binding?.ddayCalendar?.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val selectedCalendar = Calendar.getInstance().apply {
@@ -92,13 +94,13 @@ class EditlistFragment : Fragment() {
             if (id == -1L) {
                 // 추가
                 val newId = System.currentTimeMillis()
-                val todo = Todo(newId, title, task, timestamp, dday)
+                val todo = Todolist(newId, title, task, timestamp, dday)
                 viewModel.addTask(todo)
             } else {
                 // 수정
                 id?.let {
                     val updatedTodo =
-                        Todo(it, title = title, task = task, timestamp = timestamp, dday = dday)
+                        Todolist(it, title = title, task = task, timestamp = timestamp, dday = dday)
                     viewModel.updateTodo(updatedTodo)
                 }
             }
